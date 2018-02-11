@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.DriverCommand;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -36,7 +38,13 @@ public class AppiumMainTest {
     @Test
     public void testCalculation() {
         driver.findElement(By.xpath("//android.widget.Button")).click();
+        driver.findElement(By.id("del")).click();
         driver.findElement(By.id("digit_7")).click();
+        driver.findElement(By.id("op_add")).click();
+        driver.findElement(By.id("digit_8")).click();
+        driver.findElement(By.id("eq")).click();
+        Assert.assertEquals(driver.findElement(By.id("formula")).getText(), "15");
+
         driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
     }
 
